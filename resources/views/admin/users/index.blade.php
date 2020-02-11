@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+
+    @if(Session::has('deleted_user'))
+      <p class="bg-danger">{{ session('deleted_user') }} </p>
+    @endif  
+
     <h1>Users</h1>
 
     <table class="table">
@@ -19,16 +24,16 @@
         <tbody>
             @if($users)
                 @foreach($users as $user)
-          <tr>
-            <th scope="row">{{ $user->id }} </th>
-            <td><img height="50px" class="img-rounded" src="{{ $user->photo ? $user->photo->file : '/images/placeholder-ppl.jpg'}}" alt="">  </td>
-            <td><a href="{{ route('users.edit', $user->id) }}">{{ $user->name }} </a> </td>
-            <td> {{ $user->email }} </td>
-            <td> {{ $user->role->name }} </td>
-            <td> {{ $user->is_active == 1 ? 'Active' : 'No Active' }} </td>
-            <td> {{ $user->created_at->diffForHumans() }} </td>
-            <td> {{ $user->updated_at->diffForHumans() }} </td>
-          </tr>
+                <tr>
+                  <th scope="row">{{ $user->id }} </th>
+                  <td><img height="50px" class="img-rounded" src="{{ $user->photo ? $user->photo->file : '/images/placeholder-ppl.jpg'}}" alt="">  </td>
+                  <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
+                  <td> {{ $user->email }} </td>
+                  <td> {{ $user->role->name }} </td>
+                  <td> {{ $user->is_active == 1 ? 'Active' : 'No Active' }} </td>
+                  <td> {{ $user->created_at->diffForHumans() }} </td>
+                  <td> {{ $user->updated_at->diffForHumans() }} </td>
+                </tr>
                 @endforeach
             @endif
           
