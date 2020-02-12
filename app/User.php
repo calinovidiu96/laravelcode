@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
     public function setPasswordAttribute($password){
         if(!empty($password)){
             $this->attributes['password'] = bcrypt($password);
@@ -59,6 +64,7 @@ class User extends Authenticatable
         }
         return false;
     }
+
 
 
 }
