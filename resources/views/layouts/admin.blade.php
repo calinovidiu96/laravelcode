@@ -364,7 +364,7 @@
 
 @yield('footer')
 @yield('medias-scripts')
-
+@yield('scripts')
 
 
 

@@ -45,13 +45,18 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('admin/categories', 'AdminCategoriesController', ['names'=>[
         'index'=>'admin.categories.index',
         'create'=>'admin.categories.create',
+        'store'=>'admin.categories.store',
         'edit'=>'admin.categories.edit'
     ]]);
 
+    // Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
+
     Route::resource('admin/media', 'AdminMediasController', ['names'=>[
         'index'=>'admin.media.index',
-        'create'=>'admin.media.create'
+        'create'=>'admin.media.create',
     ]]);
+
+    Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
 
     Route::resource('admin/comments', 'PostCommentsController', ['names'=>[
         'index'=>'admin.comments.index',
